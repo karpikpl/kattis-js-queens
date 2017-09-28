@@ -8,15 +8,23 @@ function testSolution(input) {
 
     const result = [];
 
-    Index.init((ans) => result.push(ans), () => input.shift());
+    Index.init(function (ans) {
+
+            result.push(ans);
+
+            if(arguments.length > 1) {
+                throw 'print should be called only with one argument!';
+            }
+        },
+        () => input.shift());
     Index.solution();
 
     return result;
 }
 
-describe('Solution', function() {
+describe('Solution', function () {
 
-    describe('program', function() {
+    describe('program', function () {
 
         [
             {
@@ -41,7 +49,7 @@ describe('Solution', function() {
             }
         ].forEach((testCase) => {
 
-            it('should solve for ' + testCase.input, function() {
+            it('should solve for ' + testCase.input, function () {
 
                 // Arrange
                 const input = testCase.input;
