@@ -45,3 +45,5 @@ git commit -m 'adding data files'
 
 # install dependencies
 yarn
+
+atom .
