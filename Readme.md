@@ -2,6 +2,11 @@
 ES2016 wrapper for https://open.kattis.com/ platform.
 
 ## Usage
+Run `./start -p [PROBLEM] -w [WORKDIR]` where:
+* [PROBLEM] is kattis problem id (from the URL)
+* [WORKDIR] is existign working directory - where new folder with the name [PROBLEM] will be created
+
+## Once solution is created
 Put your solution inside `solution()` method. Add tests in `test/index.js`.
 
 ### Testing
