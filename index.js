@@ -5,33 +5,31 @@
 function solution(toPrint, toRead) {
 
     const startAll = new Date();
-    const input = readline().split(' ');
-    const dice1 = parseInt(input[0]);
-    const dice2 = parseInt(input[1]);
+    const N = parseInt(readline());
 
-    log(`Parsed input dice 1: ${dice1} dice 2: ${dice2}`);
+    const columns = {};
+    const rows = {};
+    const diagonals = [];
 
-    const results = {};
-    let maxProb = 0;
+    for (let i=0; i<N; i++) {
+        const input = readline().split(' ');
+        const x = parseInt(input[0]);
+        const y = parseInt(input[1]);
 
-    for (let i = 1; i <= dice1; i++)
-        for (let j = 1; j <= dice2; j++) {
-            const prob = (1 / dice1) + (1 / dice2);
-            const sum = i + j;
-
-            results[sum] = (results[sum] || 0) + prob;
+        if (columns[x] || rows[y] || diagonals.some(f => f(x,y))) {
+            return print('INCORRECT');
         }
+        columns[x] = true;
+        rows[y] = true;
 
-    let sums = [];
-
-    Object.keys(results).forEach((o) => sums.push({prob: results[o], sum: o}));
-
-    sums = sums.sort((a, b) => b.prob - a.prob);
-    const max = sums[0].prob;
-
-    //log(sums);
-
-    sums.filter(s => s.prob == max).sort((a, b) => a.sum - b.sum).forEach(s => print(s.sum));
+        diagonals.push((X,Y) => {
+            return Y === (-X + x + y)
+        });
+        diagonals.push((X,Y) => {
+            return Y === (X + y - x)
+        });
+    }
+    print('CORRECT');
 
     log(`Solved ALL in ${new Date() - startAll}`);
 }

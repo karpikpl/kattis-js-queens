@@ -30,24 +30,12 @@ describe('Solution', function () {
 
         [
             {
-                input: ['6 6'],
-                result: [7]
-            }, {
-                input: ['6 4'],
-                result: ['5', '6', '7']
-            }, {
-                input: ['12 20'],
-                result: [
-                    '13',
-                    '14',
-                    '15',
-                    '16',
-                    '17',
-                    '18',
-                    '19',
-                    '20',
-                    '21'
-                ]
+                input: [2, '0 0', '1 1'],
+                result: ['INCORRECT']
+            },
+            {
+                input: [2, '0 1', '1 0'],
+                result: ['INCORRECT']
             }
         ].forEach((testCase) => {
 
